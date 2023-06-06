@@ -1,73 +1,60 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Dog Breed App
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
+This application is an Angular app that displays different dog breeds and their short biographies. It leverages the NestJS API I created to retrieve the dog breed data. The app emphasizes SOLID principles for code organization and maintainability.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
+- Display a list of dog breeds with their respective images and descriptions.
+- Click on "Watch Me Grow" to see a slideshow of three stages of the growth of each breed.
+- Swipe through different breeds, their pictures, and descriptions.
 
-## Description
+## Technologies Used
+- Angular
+- NestJS
+- HTML/CSS
+- TypeScript
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## SOLID Principles
 
-## Installation
+### Single Responsibility Principle (SRP)
+The Single Responsibility Principle states that a class or component should have a single responsibility. In this app, each component and service follows the SRP by focusing on a specific task.
 
-```bash
-$ npm install
-```
+Example: The `BreedListComponent` is responsible for rendering the list of dog breeds and handling user interactions related to breed selection.
 
-## Running the app
+### Open/Closed Principle (OCP)
+The Open/Closed Principle suggests that code should be open for extension but closed for modification. In this app, abstractions, interfaces, and inheritance are used to enable easy extension without modifying existing code.
 
-```bash
-# development
-$ npm run start
+Example: The `BreedService` defines an interface for retrieving dog breed data. Different implementations of this interface can be created to fetch data from various sources, such as a local JSON file or a remote API, without modifying the code that depends on the `BreedService` interface.
 
-# watch mode
-$ npm run start:dev
+### Liskov Substitution Principle (LSP)
+The Liskov Substitution Principle states that objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program. In this app, class hierarchies are designed with proper inheritance and overriding methods when necessary.
 
-# production mode
-$ npm run start:prod
-```
+Example: The `Breed` class serves as the base class for specific dog breed classes like `Akita`, `AlaskanHusky`, etc. All breed classes inherit common properties and methods from the `Breed` class, allowing them to be used interchangeably.
 
-## Test
+### Interface Segregation Principle (ISP)
+The Interface Segregation Principle advises that clients should not be forced to depend on interfaces they don't use. In this app, focused and minimal interfaces are created, tailored to the needs of specific clients.
 
-```bash
-# unit tests
-$ npm run test
+Example: The `Breed` interface provides the necessary properties and methods required by components and services that deal with dog breed data. It includes properties like `name`, `description`, and `imageUrl`, as well as methods for retrieving breed information. By using a specific interface, clients can depend only on the subset of functionality they require.
 
-# e2e tests
-$ npm run test:e2e
+### Dependency Inversion Principle (DIP)
+The Dependency Inversion Principle suggests that high-level modules should not depend on low-level modules but on abstractions. In this app, dependencies are inverted by depending on abstractions instead of concrete implementations, facilitating loose coupling and testability.
 
-# test coverage
-$ npm run test:cov
-```
+Example: The `BreedListComponent` depends on the `BreedService` abstraction rather than a specific implementation. This allows different implementations of the `BreedService` to be easily swapped without affecting the `BreedListComponent` or other high-level modules.
 
-## Support
+## Installation and Usage
+1. Open folder dog-breed-app-back and dog-breed-app-front.
+2. Move to the right directory dog-breed-back.
+3. Install the node packages for the backend: `npm install`
+4. Start the API server: `npm run start`
+5. Open a new terminal and cd to dog-breed-app-front.
+6. Install node packages: `npm install`
+7. Start the Angular app: `npm start`
+8. Check that the address open for the application is `http://localhost:4200` otherwise there will be a CORS policy error.
+9. Access the application in your browser at `http://localhost:4200`
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Credits
+The dog breed data used in this application is obtained from reputable sources and curated for educational purposes.
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+## Future Improvements
+- Implement unit tests to ensure code correctness and maintainability.
+- Apply linting rules with ESLint for consistent code style and quality.
